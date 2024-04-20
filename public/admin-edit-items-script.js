@@ -40,6 +40,22 @@ const submitAddItem = (e) => {
     result.style.color = '#00FF00';
     result.innerHTML = 'Item added succesfully!';
     setTimeout(() => result.innerHTML = '', 2000);
+
+    const formData = new FormData();
+    formData.append('_id', itemId);
+    formData.append('name', itemName);
+    formData.append('type', itemType);
+    formData.append('image_name', itemImage);
+    formData.append('alt_text', itemAltText);
+    formData.append('price', itemPrice);
+    formData.append('sizes', itemSizes);
+    formData.append('widths', itemWidths);
+    formData.append('lengths', itemLengths);
+    formData.append('description', itemDesc);
+
+    for(let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
 };
 
 const submitDeleteItem = (e) => {
@@ -143,3 +159,13 @@ window.onload = () => {
 document.getElementById('item-sizes').onclick = showWidthLengthInputs;
 document.getElementById('form-add-item').onsubmit = submitAddItem;
 document.getElementById('form-delete-item').onsubmit = submitDeleteItem;
+document.getElementById('btn-item-image').onchange = (e) => {
+    const preview = document.getElementById('img-prev');
+
+    if(!e.target.files.length) {
+        preview.src = 'https://place-hold.it/200x200';
+        return;
+    }
+
+    preview.src = URL.createObjectURL(e.target.files.item(0));
+}

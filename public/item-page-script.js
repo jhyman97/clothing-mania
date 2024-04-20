@@ -1,6 +1,6 @@
 const getItemInfo = async() => {
     try {
-        return await fetch('items.json').then((response) => response.json());    
+        return (await fetch('./api/items/')).json();
     } catch (error) {
         console.log(error);
     }

@@ -29,6 +29,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
+// mongodb+srv://johnnyhyman97:<password>@crafts-cluster.s0ji6c3.mongodb.net/
+mongoose
+.connect('mongodb+srv://johnnyhyman97:OoquNcGlbKsorRL0@cluster0.n3k848k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+.then(() => {
+    console.log('connected to mongodb successfully');
+})
+.catch((error) => {
+    console.log('unsuccessful connecting to mongodb', error);
+});
+//OoquNcGlbKsorRL0
+
 const itemSchema = new mongoose.Schema({
     name: String,
     type: String,
@@ -36,19 +47,27 @@ const itemSchema = new mongoose.Schema({
     alt_text: String,
     price: Number,
     sizes: [String],
-    width_length_pairs: [
-        {
-            width: {type: Number},
-            length: {type: Number}
-        }
-    ],
+    widths: [Number],
+    lengths: [Number],
     description: String
 });
 
 const Item = mongoose.model('Item', itemSchema);
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname, './index.html');
+    res.sendFile(__dirname, './public/index.html');
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname, './public/item-page.html');
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname, './public/admin-edit-items.html');
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname, './public/shop-all.html');
 });
 
 app.get('/api/items', async(req, res) => {
@@ -62,7 +81,7 @@ app.get('/api/items/:id', async(req, res) => {
     res.send(item);
 });
 
-app.post('/api/crafts', upload.single('image_name'), async(req, res) => {
+app.post('/api/items', upload.single('image_name'), async(req, res) => {
     const result = validateItem(req.body);
 
     if(result.error) {
@@ -76,6 +95,8 @@ app.post('/api/crafts', upload.single('image_name'), async(req, res) => {
         alt_text: req.body.alt_text,
         price: req.body.price,
         sizes: req.body.sizes.split(','),
+        widths: req.body.widths.split(','),
+        lengths: req.body.lengths.split(','),
         description: req.body.description
     });
 
@@ -87,7 +108,7 @@ app.post('/api/crafts', upload.single('image_name'), async(req, res) => {
     res.send(item);
 });
 
-app.put('/api/crafts/:id', upload.single('image_name'), async(req, res) => {
+app.put('/api/items/:id', upload.single('image_name'), async(req, res) => {
     const result = validateItem(req.body);
 
     if(result.error) {
@@ -101,6 +122,8 @@ app.put('/api/crafts/:id', upload.single('image_name'), async(req, res) => {
         alt_text: req.body.alt_text,
         price: req.body.price,
         sizes: req.body.sizes.split(','),
+        widths: req.body.widths.split(','),
+        lengths: req.body.lengths.split(','),
         description: req.body.description
     };
 
@@ -127,6 +150,8 @@ const validateItem = (item) => {
         alt_text: joi.string().min(1).required(),
         price: joi.number().required(),
         sizes: joi.allow(''),
+        widths: joi.allow(''),
+        lengths: joi.allow(''),
         description: joi.string().min(1).required()
     });
 

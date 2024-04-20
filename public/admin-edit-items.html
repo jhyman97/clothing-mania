@@ -54,10 +54,8 @@
                         <form id="form-add-item">
                             <section class="columns-main">
                                 <section class="col-1-of-2-inner">
-                                    <label for="input-item-id" class="block">Item ID</label>
-                                    <input type="number" name="input-item-id" id="input-item-id" placeholder="Item ID" required>
-                                </section>
-                                <section class="col-1-of-2-inner">
+                                    <!-- <label for="input-item-id" class="block">Item ID</label> -->
+                                    <input type="hidden" name="input-item-id" id="input-item-id">
                                     <label for="input-type" class="block">Item Type</label>
                                     <select name="input-type">
                                         <option value="shirt">shirt</option>
@@ -65,15 +63,29 @@
                                         <option value="jacket">jacket</option>
                                     </select>
                                 </section>
-                            </section>
-                            <section class="columns-main">
                                 <section class="col-1-of-2-inner">
+                                    <!-- <label for="input-type" class="block">Item Type</label>
+                                    <select name="input-type">
+                                        <option value="shirt">shirt</option>
+                                        <option value="pants">pants</option>
+                                        <option value="jacket">jacket</option>
+                                    </select> -->
                                     <label for="input-alt-text" class="block">Item Alt Text</label>
                                     <input type="text" name="input-alt-text" id="input-alt-text" placeholder="Alt Text" required>
                                 </section>
+                            </section>
+                            <section class="columns-main">
                                 <section class="col-1-of-2-inner">
+                                    <!-- <label for="input-alt-text" class="block">Item Alt Text</label>
+                                    <input type="text" name="input-alt-text" id="input-alt-text" placeholder="Alt Text" required> -->
                                     <label for="btn-item-image" class="block">Item Image</label>
-                                    <input type="file" name="btn-item-image" id="btn-item-image" required>
+                                    <input type="file" name="btn-item-image" id="btn-item-image" accept="image/*" required>
+                                </section>
+                                <section class="col-1-of-2-inner">
+                                    <!-- <label for="btn-item-image" class="block">Item Image</label>
+                                    <input type="file" name="btn-item-image" id="btn-item-image" accept="image/*" required> -->
+                                    <h3>Image Preview</h3>
+                                    <img id="img-prev" src="https://place-hold.it/200x200">
                                 </section>
                             </section>
                             <section class="columns-main">
