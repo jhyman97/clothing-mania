@@ -97,7 +97,7 @@ const showItemInfo = async() => {
 
     for(let i in item.sizes) {
         const p = document.createElement('p');
-        p.innerHTML = `${item.sizes[i]}: Width ${item.width_length_pairs[i].width}", Length ${item.width_length_pairs[i].length}"`;
+        p.innerHTML = `${item.sizes[i]}: Width ${item.widths[i]}", Length ${item.lengths[i]}"`;
         itemInfoSection.append(p);
     }
 
@@ -110,11 +110,6 @@ const showItemInfo = async() => {
     itemInfoSection.append(descInfo);
 };
 
-
-const addToCart = (e) => {
-    e.preventDefault();
-};
-
 const toggleHamburger = () => {
     document.getElementById("main-nav-list").classList.toggle("hide-small");
 };
@@ -124,4 +119,3 @@ window.onload = () => {
 };
 
 showItemInfo();
-document.getElementById('form').onsubmit = addToCart;

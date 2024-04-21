@@ -50,80 +50,70 @@
             <main>
                 <section class="columns-main">
                     <section class="col-1-of-2">
-                        <h2>Add Item</h2>
+                        <h2 id="form-header">Add Item</h2>
+                        <p id="reset"></p>
                         <form id="form-add-item">
                             <section class="columns-main">
                                 <section class="col-1-of-2-inner">
-                                    <!-- <label for="input-item-id" class="block">Item ID</label> -->
-                                    <input type="hidden" name="input-item-id" id="input-item-id">
-                                    <label for="input-type" class="block">Item Type</label>
-                                    <select name="input-type">
+                                    <input type="hidden" name="_id" id="_id">
+                                    <label for="type" class="block">Item Type</label>
+                                    <select id="type" name="type">
                                         <option value="shirt">shirt</option>
                                         <option value="pants">pants</option>
                                         <option value="jacket">jacket</option>
                                     </select>
                                 </section>
                                 <section class="col-1-of-2-inner">
-                                    <!-- <label for="input-type" class="block">Item Type</label>
-                                    <select name="input-type">
-                                        <option value="shirt">shirt</option>
-                                        <option value="pants">pants</option>
-                                        <option value="jacket">jacket</option>
-                                    </select> -->
-                                    <label for="input-alt-text" class="block">Item Alt Text</label>
-                                    <input type="text" name="input-alt-text" id="input-alt-text" placeholder="Alt Text" required>
+                                    <label for="alt_text" class="block">Item Alt Text</label>
+                                    <input type="text" name="alt_text" id="alt_text" placeholder="Alt Text" required>
                                 </section>
                             </section>
                             <section class="columns-main">
                                 <section class="col-1-of-2-inner">
-                                    <!-- <label for="input-alt-text" class="block">Item Alt Text</label>
-                                    <input type="text" name="input-alt-text" id="input-alt-text" placeholder="Alt Text" required> -->
-                                    <label for="btn-item-image" class="block">Item Image</label>
-                                    <input type="file" name="btn-item-image" id="btn-item-image" accept="image/*" required>
+                                    <label for="image_name" class="block">Item Image</label>
+                                    <input type="file" name="image_name" id="image_name" accept="image/*">
                                 </section>
                                 <section class="col-1-of-2-inner">
-                                    <!-- <label for="btn-item-image" class="block">Item Image</label>
-                                    <input type="file" name="btn-item-image" id="btn-item-image" accept="image/*" required> -->
                                     <h3>Image Preview</h3>
                                     <img id="img-prev" src="https://place-hold.it/200x200">
                                 </section>
                             </section>
                             <section class="columns-main">
                                 <section class="col-1-of-2-inner">
-                                    <label for="input-item-name" class="block">Item Name</label>
-                                    <input id="input-item-name" placeholder="Name" required>
+                                    <label for="name" class="block">Item Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Name" required>
                                 </section>
                                 <section class="col-1-of-2-inner">
-                                    <label for="input-item-price" class="block">Item Price</label>
-                                    <input id="input-item-price" placeholder="Price" required>
+                                    <label for="price" class="block">Item Price</label>
+                                    <input type="number" id="price" name="price" placeholder="Price" required>
                                 </section>
                             </section>                           
                             <section class="columns-main">
                                 <section class="col-1-of-2-inner">
-                                    <label for="item-desc" class="block">Item Description</label>
-                                    <textarea name="item-desc" id="item-desc" placeholder="Description" required></textarea>
+                                    <label for="description" class="block">Item Description</label>
+                                    <textarea name="description" id="description" placeholder="Description" required></textarea>
                                 </section>
                                 <section class="col-1-of-2-inner">
                                     <label for="item-sizes" class="block">Item Sizes</label>
                                     <ul id="item-sizes">
                                         <li>
-                                            <input type="checkbox" name="size" id="cb-small">
+                                            <input type="checkbox" name="sizes" id="cb-small">
                                             <label for="cb-small">Small</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="size" id="cb-medium">
+                                            <input type="checkbox" name="sizes" id="cb-medium">
                                             <label for="cb-medium">Medium</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="size" id="cb-large">
+                                            <input type="checkbox" name="sizes" id="cb-large">
                                             <label for="cb-large">Large</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="size" id="cb-extra-large">
+                                            <input type="checkbox" name="sizes" id="cb-extra-large">
                                             <label for="cb-extra-large">Extra Large</label>
                                         </li>
                                         <li>
-                                            <input type="checkbox" name="size" id="cb-2xl">
+                                            <input type="checkbox" name="sizes" id="cb-2xl">
                                             <label for="cb-2xl">2XL</label>
                                         </li>
                                     </ul>
@@ -138,21 +128,10 @@
                             <section id="item-to-be-added"></section>
                         </form>
                     </section>
-                    <section class="col-1-of-2">
-                        <h2>Delete Item</h2>
-                        <form id="form-delete-item">
-                            <label for="input-item-id-delete" class="block">Item ID</label>
-                            <input name="input-item-id-delete" id="input-item-id-delete" placeholder="Item ID" required>
-                            <label for="text-area-reason" class="block">Reason For Deletion</label>
-                            <textarea name="text-area-reason" id="text-area-reason" placeholder="Enter a valid reason..." required></textarea>
-                            <p>
-                            <button type="submit" id="btn-confirm-action" class="button">Confirm Delete</button>
-                            </p>
-                            <p id="remove-result"></p>
-                            <section id="item-to-be-deleted"></section>
-                        </form>
-
-                    </section>
+                </section>
+                <section id="avail-items">
+                    <h2>Available Items</h2>
+                    <section id="current-items"></section>
                 </section>
             </main>
             <footer>

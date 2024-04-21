@@ -20,7 +20,7 @@ const mongoose = require('mongoose');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './public/images');
+        cb(null, './public/item-images');
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
@@ -31,7 +31,7 @@ const upload = multer({storage: storage});
 
 // mongodb+srv://johnnyhyman97:<password>@crafts-cluster.s0ji6c3.mongodb.net/
 mongoose
-.connect('mongodb+srv://johnnyhyman97:OoquNcGlbKsorRL0@cluster0.n3k848k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+.connect('mongodb+srv://johnnyhyman97:OoquNcGlbKsorRL0@cluster0.n3k848k.mongodb.net/items?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => {
     console.log('connected to mongodb successfully');
 })
@@ -94,7 +94,7 @@ app.post('/api/items', upload.single('image_name'), async(req, res) => {
         type: req.body.type,
         alt_text: req.body.alt_text,
         price: req.body.price,
-        sizes: req.body.sizes.split(','),
+        sizes: req.body.sizes,
         widths: req.body.widths.split(','),
         lengths: req.body.lengths.split(','),
         description: req.body.description
@@ -121,7 +121,7 @@ app.put('/api/items/:id', upload.single('image_name'), async(req, res) => {
         type: req.body.type,
         alt_text: req.body.alt_text,
         price: req.body.price,
-        sizes: req.body.sizes.split(','),
+        sizes: req.body.sizes,
         widths: req.body.widths.split(','),
         lengths: req.body.lengths.split(','),
         description: req.body.description
@@ -157,5 +157,17 @@ const validateItem = (item) => {
 
     return schema.validate(item);
 };
+
+// _id: joi.allow(''),
+// name: joi.allow(''),
+// type: joi.allow(''),
+// alt_text: joi.allow(''),
+// price: joi.allow(''),
+// sizes: joi.allow(''),
+// widths: joi.allow(''),
+// lengths: joi.allow(''),
+// description: joi.allow('')
+
+
 
 app.listen(3000, () => {});
